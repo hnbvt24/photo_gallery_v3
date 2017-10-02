@@ -1,0 +1,13 @@
+body {
+	width: 100%;
+}
+
+section div {
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div a img {
+	padding: 25px;
+}
