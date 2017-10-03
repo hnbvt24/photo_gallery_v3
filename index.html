@@ -6,38 +6,126 @@
         <title>Interactive Photo Gallery</title>
         <link rel="stylesheet" type="text/css" href="css/normalize.css">
         <link rel="stylesheet" href="js/lightbox/css/lightbox.min.css">
-        <link rel="stylesheet" href="js/ajax-live-search-master/css/ajaxlivesearch.min.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     </head>
     <body>
 
     	<section>
-    		<div>
-    			<!-- search bar -->
-    			<input type="text" class='mySearch' id="ls_query" placeholder="Type to start searching ...">
+    		<div class="container" style="padding:50px 250px;">
+    			 <form role="form">
+                    <div class="form-group">
+                      <input type="input" class="form-control input-lg" id="txt-search" placeholder="Type your search character">
+                    </div>
+                </form>
     		</div>
     	</section>
 
     	<section>
-    		<div>
-				<a href="photos/01.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/01.jpg" alt="Hay Bales" /></a>
-				<a href="photos/02.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/02.jpg" alt="Lake" /></a>
-				<a href="photos/03.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/03.jpg" alt="Canyon" /></a>
-				<a href="photos/04.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/04.jpg" alt="Iceberg" /></a>
-				<a href="photos/05.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/05.jpg" alt="Desert" /></a>
-				<a href="photos/06.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/06.jpg" alt="Fall" /></a>
-				<a href="photos/07.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/07.jpg" alt="Plantation" /></a>
-				<a href="photos/08.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/08.jpg" alt="Dunes" /></a>
-				<a href="photos/09.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/09.jpg" alt="Countryside Lane" /></a>
-				<a href="photos/10.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/10.jpg" alt="Sunset" /></a>
-				<a href="photos/11.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/11.jpg" alt="Cave" /></a>
-				<a href="photos/12.jpg" data-lightbox="image-1" data-title="My caption"><img src="photos/thumbnails/12.jpg" alt="Bluebells" /></a>
+    		<div id="filter-records">
 			</div>
     	</section>
 
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/lightbox/js/lightbox.min.js"></script>
-    <script src="js/ajax-live-search-master/js/ajaxlivesearch.min.js"></script>
+    <script>
+
+  $(document).ready(function(){
+    var gallery = [
+        {
+        "image": "01.jpg",
+        "title": "Hay Bales",
+        "caption": "I love hay bales. Took this snap on a drive through the countryside past some straw fields."
+        },
+        {
+        "image": "02.jpg",
+        "title": "Lake",
+        "caption": "The lake was so calm today. We had a great view of the snow on the mountains from here."
+        },
+        {
+        "image": "03.jpg",
+        "title": "Canyon",
+        "caption": "I hiked to the top of the mountain and got this picture of the canyon and trees below."
+        },
+        {
+        "image": "04.jpg",
+        "title": "Iceberg",
+        "caption": "It was amazing to see an iceberg up close, it was so cold but didn’t snow today."
+        },
+        {
+        "image": "05.jpg",
+        "title": "Desert",
+        "caption": "The red cliffs were beautiful. It was really hot in the desert but we did a lot of walking through the canyons."
+        },
+        {
+        "image": "06.jpg",
+        "title": "Fall",
+        "caption": "Fall is coming, I love when the leaves on the trees start to change color."
+        },
+        {
+        "image": "07.jpg",
+        "title": "Plantation",
+        "caption": "I drove past this plantation yesterday, everything is so green!"
+        },
+        {
+        "image": "08.jpg",
+        "title": "Dunes",
+        "caption": "My summer vacation to the Oregon Coast. I love the sandy dunes!"
+        },
+        {
+        "image": "09.jpg",
+        "title": "Countryside Lane",
+        "caption": "We enjoyed a quiet stroll down this countryside lane."
+        },
+        {
+        "image": "10.jpg",
+        "title": "Sunset",
+        "caption": "Sunset at the coast! The sky turned a lovely shade of orange."
+        },
+        {
+        "image": "11.jpg",
+        "title": "Cave",
+        "caption": "I did a tour of a cave today and the view of the landscape below was breathtaking."
+        },
+        {
+        "image": "12.jpg",
+        "title": "Bluebells",
+        "caption": "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
+        }
+    ]
+
+    var output ='<div>';
+    for (i=0; i < gallery.length; i++) {
+         $.each(gallery, function(key, val){
+            output += '<a href="photos/' + val.image + '" data-lightbox="image-1" data-title="' + val.caption + '"><img src="photos/thumbnails/' + val.image +'" alt="'+ val.title +'" /></a>';
+        });
+     }
+    output+= '</div>';
+
+$('#txt-search').keyup(function(){
+        var searchField = $(this).val();
+        if(searchField === '')  {
+            $('#filter-records').html('');
+            return;
+        }
+        
+        var regex = new RegExp(searchField, "i");
+        var output = '<div>';
+        var count = 1;
+          $.each(gallery, function(key, val){
+            if ((val.title.search(regex) != -1) || (val.caption.search(regex) != -1)) {
+              output += '<a href="photos/' + val.image + '" data-lightbox="image-1" data-title="' + val.caption + '"><img src="photos/thumbnails/' + val.image +'" alt="'+ val.title +'" /></a>';
+              if(count%2 == 0){
+                output += '</div><div>'
+              }
+              count++;
+            }
+          });
+          output += '</div>';
+          $('#filter-records').html(output);
+    });
+  });
+
+        </script>
     </body>
 </html>
