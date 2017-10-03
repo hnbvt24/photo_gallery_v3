@@ -102,7 +102,7 @@ var output = "<div>";
 output += "</div>";
 
 // Filter through each image in the json file based on user input. Compare to title and caption.
-$( "#filter-records" ).append(output);
+$( "#filter-records" ).html(output);
 
 $('#txt-search').keyup(function(){
         var searchField = $(this).val();
