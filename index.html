@@ -95,11 +95,10 @@
     ]
 
 // Display images in gallery on load
-var output = "<div>";
+var output = "";
    $.each(gallery, function(key, val){
       output += '<a href="photos/' + val.image + '" data-lightbox="image-1" data-title="' + val.caption + '"><img src="photos/thumbnails/' + val.image +'" alt="'+ val.title +'" /></a>';
    });
-output += "</div>";
 
 // Filter through each image in the json file based on user input. Compare to title and caption.
 $( "#filter-records" ).html(output);
@@ -108,18 +107,18 @@ $('#txt-search').keyup(function(){
         var searchField = $(this).val();
 	
         var regex = new RegExp(searchField, "i");
-        var output = '<div>';
+        var output = '';
         var count = 1;
           $.each(gallery, function(key, val){
             if ((val.title.search(regex) != -1) || (val.caption.search(regex) != -1)) {
               output += '<a href="photos/' + val.image + '" data-lightbox="image-1" data-title="' + val.caption + '"><img src="photos/thumbnails/' + val.image +'" alt="'+ val.title +'" /></a>';
               if(count%2 == 0){
-                output += '</div>'
+                output += '';
               }
               count++;
             }
           });
-          output += '</div>';
+          output += '';
           $('#filter-records').html(output);
     });
   });
