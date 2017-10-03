@@ -1,11 +1,13 @@
 body {
 	width: 100%;
+	background-color: #fafafa;
 }
 
 section div {
-	padding-left: 50px;
-	padding-right: 50px;
-	margin: 0 auto;
+	background-color: #ffffff;
+	padding-left: 25px;
+	padding-right: 25px;
+	margin: 25px 10px;
 	text-align: center;
 }
 
@@ -32,7 +34,7 @@ input[type=input] {
 
 @media only screen and (min-width: 768px) {
 	section div {
-	     padding: 25px;	
+	     padding: 50px;
 	}
 	input {
 	     max-width: 768px;
