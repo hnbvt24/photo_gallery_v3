@@ -99,8 +99,8 @@
 	 $.each(gallery, function(key, val){
 	    output += '<a href="photos/' + val.image + '" data-lightbox="image-1" data-title="' + val.caption + '"><img src="photos/thumbnails/' + val.image +'" alt="'+ val.title +'" /></a>';
 	});
-	output += "</div>";
      }
+    output += "</div>";
     $( "#filter-records" ).append(output);
 
 $('#txt-search').keyup(function(){
