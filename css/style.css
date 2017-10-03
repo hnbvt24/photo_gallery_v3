@@ -1,6 +1,6 @@
 body {
 	width: 100%;
-	background-color: #fafafa;
+	background-color: #e1e1e1;
 }
 
 section div {
@@ -28,7 +28,7 @@ input[type=input] {
 
 @media only screen and (min-width: 320px) {
 	section div {
-	     padding: 0;	
+	     padding: 50px 15px;	
 	}
 }
 
