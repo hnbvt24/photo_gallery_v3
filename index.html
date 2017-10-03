@@ -96,11 +96,9 @@
 
 // Display images in gallery on load
 var output = "<div>";
-for (i=0; i < gallery.length; i++) {
    $.each(gallery, function(key, val){
       output += '<a href="photos/' + val.image + '" data-lightbox="image-1" data-title="' + val.caption + '"><img src="photos/thumbnails/' + val.image +'" alt="'+ val.title +'" /></a>';
    });
-}
 output += "</div>";
 
 // Filter through each image in the json file based on user input. Compare to title and caption.
