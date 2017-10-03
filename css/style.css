@@ -16,8 +16,7 @@ div a img {
 }
 
 input[type=input] {
-    width: 100%;
-    min-width: 320px;
+    width: 95%;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
