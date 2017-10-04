@@ -53,6 +53,19 @@ input[type=input] {
 	display: none;	
 }
 
+.lb-nav a.lb-prev,
+.lb-nav a.lb-next {
+    position: relative;
+}
+
+.lb-nav a.lb-prev {
+    left: -80px;	
+}
+
+.lb-nav a.lb-next {
+    left: 80px;
+}
+
 /* ----------------------
 	mobile responsive
 ------------------------*/
