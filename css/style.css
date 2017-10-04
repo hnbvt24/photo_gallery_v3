@@ -37,13 +37,15 @@ input[type=input] {
 	font-family: 'Open Sans';
 	font-size: 16px;
 	font-weight: normal;
-	max-width: 500px;
 }
 
 .lb-data .lb-details {
 	padding-top: 25px;
 	text-align: center;
 	width: 100%;
+	max-width: 600px;
+        margin: 0 auto;
+        float: none;
 }
 
 .lb-data .lb-close {
