@@ -40,6 +40,7 @@ input[type=input] {
 }
 
 .lb-data .lb-details {
+	line-height: 1.5;
 	padding-top: 25px;
 	text-align: center;
 	width: 100%;
