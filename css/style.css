@@ -41,7 +41,12 @@ input[type=input] {
 
 .lb-data .lb-details {
 	padding-top: 25px;
-	text-align: center;	
+	text-align: center;
+	width: 100%;
+}
+
+.lb-data .lb-close {
+	display: none;	
 }
 
 /* ----------------------
