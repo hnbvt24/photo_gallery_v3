@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Practice JavaScript</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="normalize.css" />
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+	<script src="javascript.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+</head>
+
+<body>
+	<div id="wrapper">
+		<header class="main-header">
+    		<h1 class="name"><a href="#">Travel Worthy</a></h1>
+    	</header>
+		
+		<form>
+		
+			<div class="leftSide">
+				<h2>Hotel Listing</h2>
+				<legend>Enter in your search input below:</legend>
+				<input type="text" class="form-control input-lg" id="txt-search" placeholder="Search">
+			
+				<div id="hoteldata">
+				</div>
+				<input type="submit" class="btSubmit" value="Submit"/>
+			</div>
+		</form>
+		<div class="rightSide">
+			<div class="hotelInformation">
+				<hr />
+				<div id="hotelName" class="name"></div>
+				<hr />
+				<div id="roomRate" class="room"></div>
+				<div id="specialRate" class="discount"></div>
+				<div id="offerEnds" class="offer"></div>
+			</div>
+		</div>
+		<footer>
+			<div id="copyright"></div>
+    	</footer>
+		
+	</div>
+	<script>
+	 $(document).ready(function(){
+	 var hotels = [
+        {
+        "name": 'Alexandria',
+		"image": 'https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 240,
+        "discount": 15,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		},
+        {
+        "name": 'The Ruby Red',
+		"image": 'https://images.pexels.com/photos/261169/pexels-photo-261169.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 320,
+        "discount": 20,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		},
+        {
+        "name": 'California Coast',
+		"image": 'https://images.pexels.com/photos/460537/pexels-photo-460537.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 220,
+        "discount": 16,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		},
+        {
+        "name": 'Oceanic Escape',
+		"image": 'https://images.pexels.com/photos/261108/pexels-photo-261108.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 260,
+        "discount": 15,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		},
+        {
+        "name": 'Southern Countryside',
+		"image": 'https://images.pexels.com/photos/53577/hotel-architectural-tourism-travel-53577.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 300,
+        "discount": 20,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		},
+        {
+        "name": 'Bluebells Hotel',
+		"image": 'https://images.pexels.com/photos/279813/pexels-photo-279813.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 280,
+        "discount": 20,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		},
+        {
+        "name": 'Hilton Head',
+		"image": 'https://images.pexels.com/photos/261101/pexels-photo-261101.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 250,
+        "discount": 10,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		},
+        {
+        "name": 'Seaside Escape',
+		"image": 'https://images.pexels.com/photos/297984/pexels-photo-297984.jpeg?auto=compress&cs=tinysrgb&h=350',
+        "roomRate": 270,
+        "discount": 16,
+        "offerPrice": function() {
+			var offerRate = this.roomRate * ((100 - this.discount) / 100);
+			return offerRate;
+		}
+		}
+    ];
+	// Display images in gallery on load
+	var output = "";
+	   $.each(hotels, function(key, val){
+		  output += '<a href="' + val.image + '" data-name="' + val.name + '"><img src="' + val.image +'" alt="'+ val.name +'" /></a>';
+	   });
+	// Filter through each image in the json file based on user input. Compare to name and caption.
+	$( "#hoteldata" ).html(output);
+	$('#txt-search').keyup(function(){
+			var searchField = $(this).val();
+		
+			var regex = new RegExp(searchField, "i");
+			var output = '';
+			var count = 1;
+			  $.each(hotels, function(key, val){
+				if (val.name.search(regex) != -1) {
+				  output += '<a href="' + val.image + '" data-name="' + val.name + '"><img src="' + val.image + '"  alt="'+ val.name +'" /></a>';
+				  if(count%2 == 0){
+					output += '';
+				  }
+				  count++;
+				}
+			  });
+			  output += '';
+			  $('#hoteldata').html(output);
+		});
+	  });
+    </script>
+	<script language="javascript" type="text/javascript">
+	var today = new Date();
+	var year = today.getFullYear();
+	var copyright = document.getElementById('copyright');
+	copyright.innerHTML = '&copy; ' + year + ' Travel Worthy';
+	</script>
+	<script>
+	$(document).ready(function() {
+	  function setHeight() {
+		windowHeight = $(window).innerHeight();
+		$('.hotelInformation').css('min-height', windowHeight);
+	  };
+	  setHeight();
+	  
+	  $(window).resize(function() {
+		setHeight();
+	  });
+	});
+	</script>
+</body>
+</html>
